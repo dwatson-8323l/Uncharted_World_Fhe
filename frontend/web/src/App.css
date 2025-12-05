@@ -1,0 +1,660 @@
+/* App.css */
+:root {
+  --primary-color: #6a5acd; /* Slate blue */
+  --secondary-color: #9370db; /* Medium purple */
+  --accent-color: #483d8b; /* Dark slate blue */
+  --text-color: #f8f8ff; /* Ghost white */
+  --background-dark: #1a1a2e;
+  --background-light: #16213e;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+  --discovered-color: #4caf50;
+  --undiscovered-color: #ff9800;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--background-dark);
+  color: var(--text-color);
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background-color: var(--background-light);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.logo h1 span {
+  color: var(--secondary-color);
+}
+
+.logo p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.discover-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.discover-btn:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), 
+              url('https://example.com/space-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.world-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: rgba(72, 61, 139, 0.5);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--secondary-color);
+}
+
+.stat-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.stat-card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.fhe-active {
+  color: var(--success-color);
+}
+
+.controls-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-filter {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-filter input {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  min-width: 250px;
+}
+
+.search-filter select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.view-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.view-controls button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+}
+
+.view-controls button.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tile-card {
+  background-color: rgba(22, 33, 62, 0.7);
+  padding: 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  backdrop-filter: blur(5px);
+}
+
+.tile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tile-card.discovered {
+  border-color: var(--discovered-color);
+}
+
+.tile-card.undiscovered {
+  border-color: var(--undiscovered-color);
+}
+
+.tile-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.tile-card p {
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.tile-status {
+  margin-top: 1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.tile-card.discovered .tile-status {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--discovered-color);
+}
+
+.tile-card.undiscovered .tile-status {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: var(--undiscovered-color);
+}
+
+.world-map {
+  height: 600px;
+  width: 100%;
+  position: relative;
+  background-color: rgba(22, 33, 62, 0.5);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map-tile {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.map-tile.discovered {
+  background-color: var(--discovered-color);
+  color: white;
+}
+
+.map-tile.undiscovered {
+  background-color: var(--undiscovered-color);
+  color: white;
+}
+
+.project-info {
+  background-color: rgba(72, 61, 139, 0.3);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  border: 1px solid var(--secondary-color);
+}
+
+.project-info h2 {
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.project-info p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.fhe-explanation {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: rgba(106, 90, 205, 0.2);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.fhe-explanation h3 {
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.no-tiles {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background-color: rgba(22, 33, 62, 0.5);
+  border-radius: 8px;
+}
+
+.no-tiles p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.no-tiles button {
+  padding: 0.5rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.discovery-modal {
+  background-color: var(--background-light);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  color: var(--secondary-color);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.discovery-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.discovery-options button {
+  padding: 0.7rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.discovery-options button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.coordinate-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.coordinate-input input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.coordinate-input button {
+  padding: 0.5rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fhe-notice {
+  padding: 1rem;
+  background-color: rgba(106, 90, 205, 0.2);
+  border-radius: 4px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.fhe-notice p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tile-detail-modal {
+  background-color: var(--background-light);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.tile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tile-info p {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tile-info strong {
+  color: var(--secondary-color);
+  min-width: 120px;
+}
+
+.encrypted-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: rgba(255, 152, 0, 0.1);
+  border-radius: 4px;
+  border-left: 4px solid var(--undiscovered-color);
+}
+
+.encrypted-section button {
+  padding: 0.5rem 1rem;
+  background-color: var(--undiscovered-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.encrypted-section button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.decrypted-resources {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 4px;
+  border-left: 4px solid var(--discovered-color);
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--secondary-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-footer button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-footer button:first-child {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.modal-footer button:last-child {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.transaction-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.transaction-content {
+  background-color: var(--background-light);
+  padding: 2rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.transaction-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.transaction-icon.pending {
+  background-color: rgba(255, 152, 0, 0.2);
+  color: var(--warning-color);
+}
+
+.transaction-icon.success {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--success-color);
+}
+
+.transaction-icon.error {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: var(--error-color);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--secondary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.app-footer {
+  background-color: var(--background-light);
+  padding: 2rem;
+  border-top: 1px solid var(--secondary-color);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.footer-section p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-dark);
+  z-index: 9999;
+}
+
+.loading-screen p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.wallet-connect-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .world-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .controls-section {
+    flex-direction: column;
+  }
+  
+  .tiles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
